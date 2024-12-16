@@ -6,10 +6,12 @@ const Footer: React.FC = () => {
     <div className="Footer">
     <Box 
       component="footer" >
-      <Typography variant="body2">
-         <p>שולמית בר כהנים ייעוץ וטיפול זוגי</p>
-        © {new Date().getFullYear()}
-      </Typography>
+       <Typography variant="body2">
+          שולמית בר כהנים ייעוץ וטיפול זוגי
+        </Typography>
+        <Typography variant="body2">
+          © {new Date().getFullYear()}
+        </Typography>
     </Box>
       </div>
   );
