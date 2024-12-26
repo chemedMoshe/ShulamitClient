@@ -6,11 +6,14 @@ const Footer: React.FC = () => {
     <div className="Footer">
     <Box 
       component="footer" >
-       <Typography variant="body2">
-          שולמית בר כהנים ייעוץ וטיפול זוגי
+        <Typography variant="body2" color="textSecondary">
+          שולמית בר כהנים - ייעוץ וטיפול זוגי.  
         </Typography>
-        <Typography variant="body2">
-          © {new Date().getFullYear()}
+        <Typography variant="body2" color="textSecondary">
+          כל הזכויות שמורות © 2024
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          📞 טלפון: 050-1234567 | 📧 דוא"ל: example@example.com
         </Typography>
     </Box>
       </div>
