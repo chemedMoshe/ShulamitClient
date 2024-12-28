@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import './Footer.css';
 import "../../../public/whatsapp.png";
 const Footer: React.FC = () => {
