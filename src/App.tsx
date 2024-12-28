@@ -12,9 +12,9 @@ export default function App() {
       <div className="content">
         <Pages />
       </div>
-      <div>
+      <>
         <Footer />
-      </div>
+      </>
     </div>
   )
 }

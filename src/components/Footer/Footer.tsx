@@ -1,24 +1,26 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import './Footer.css';
+import "../../../public/whatsapp.png";
 const Footer: React.FC = () => {
   return (
     <div className="Footer">
-    <Box 
-      component="footer" >
-        <Typography variant="body1" color="textSecondary">
-          שולמית בר כהנים - ייעוץ וטיפול זוגי.  
+        <Typography variant="body1" color="textSecondary" margin={0}>
+          שולמית בר כהנים - ייעוץ וטיפול זוגי.
         </Typography>
-        
-        <Typography variant="body1" color="textSecondary">
-        📞 טלפון: 0504136536
-        </Typography>
-
-        <Typography variant="body2" color="textSecondary">
+        <Typography
+        variant="body1" color="textSecondary" margin={0}
+        >0546204619</Typography>
+        <a
+          href="https://wa.me/972546204619" target="_blank"
+        >
+          <img className='WhatsappIcone'
+            src="../../../public/whatsapp.png" alt="Whatsapp" />
+        </a>
+        <Typography variant="body2" color="textSecondary" margin={0}>
           כל הזכויות שמורות © 2024
         </Typography>
-    </Box>
-      </div>
+    </div>
   );
 };
 
