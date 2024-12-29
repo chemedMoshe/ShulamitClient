@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import './Footer.css';
+import { FaWhatsappSquare } from "react-icons/fa";
 const Footer: React.FC = () => {
   return (
     <div className="Footer">
@@ -13,8 +14,7 @@ const Footer: React.FC = () => {
         <a
           href="https://wa.me/972546204619" target="_blank"
         >
-          <img className='WhatsappIcone'
-            src="/public/whatsapp.png" alt="Whatsapp" />
+          <FaWhatsappSquare color='green' height={25}  width={25}/>
         </a>
         <Typography variant="body2" color="textSecondary" margin={0}>
           כל הזכויות שמורות © 2024
