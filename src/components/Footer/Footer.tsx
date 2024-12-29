@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import './Footer.css';
-import "../../../public/whatsapp.png";
 const Footer: React.FC = () => {
   return (
     <div className="Footer">
@@ -15,7 +14,7 @@ const Footer: React.FC = () => {
           href="https://wa.me/972546204619" target="_blank"
         >
           <img className='WhatsappIcone'
-            src="../../../public/whatsapp.png" alt="Whatsapp" />
+            src="/public/whatsapp.png" alt="Whatsapp" />
         </a>
         <Typography variant="body2" color="textSecondary" margin={0}>
           כל הזכויות שמורות © 2024
