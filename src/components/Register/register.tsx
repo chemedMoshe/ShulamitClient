@@ -26,14 +26,16 @@ const Card = styled(MuiCard)(({ theme }) => ({
     }),
 }));
 
-export default function SignInCard() {
+export default function RegisterCard() {
     const [emailError, setEmailError] = React.useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-
+    const[nameError, setNameError] = React.useState(false);
+    const[nameErrorMessage, setNameErrorMessage] = React.useState('');
+   
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        if (emailError || passwordError) {
+        if (emailError || passwordError||nameError) {
             event.preventDefault();
             return;
         }
@@ -47,7 +49,7 @@ export default function SignInCard() {
     const validateInputs = () => {
         const email = document.getElementById('email') as HTMLInputElement;
         const password = document.getElementById('password') as HTMLInputElement;
-
+        const name = document.getElementById('name') as HTMLInputElement;
         let isValid = true;
 
         if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
@@ -63,7 +65,13 @@ export default function SignInCard() {
             setPasswordError(true);
             setPasswordErrorMessage('Password must be at least 6 characters long.');
             isValid = false;
-        } else {
+        }
+        if(!name.value){
+            setNameError(true);
+            setNameErrorMessage('Please enter a valid name.');
+            isValid = false;
+        }
+         else {
             setPasswordError(false);
             setPasswordErrorMessage('');
         }
@@ -77,6 +85,8 @@ export default function SignInCard() {
         setEmailErrorMessage('');
         setPasswordError(false);
         setPasswordErrorMessage('');
+        setNameError(false);
+        setNameErrorMessage('');
     };
 
     return (
@@ -86,7 +96,7 @@ export default function SignInCard() {
                 variant="h4"
                 sx={{ width: '80%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
             >
-               התחברות
+                הרשמה
             </Typography>
             <Box
                 component="form"
@@ -94,6 +104,23 @@ export default function SignInCard() {
                 noValidate
                 sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
             >
+                <FormControl>
+                    <TextField
+                        error={nameError}
+                        helperText={nameErrorMessage}
+                        id="name"
+                        name="name"
+                        label="Name"
+                        autoComplete="name"
+                        autoFocus
+                        required
+                        fullWidth
+                        variant="outlined"
+                        color={nameError ? 'error' : 'primary'}
+                        onChange={(e) => clearErrors(e.target.value)}
+                    />
+                </FormControl>
+                   
                 <FormControl>
                     <TextField
                         error={emailError}
@@ -109,8 +136,9 @@ export default function SignInCard() {
                         variant="outlined"
                         color={emailError ? 'error' : 'primary'}
                         onChange={(e) => clearErrors(e.target.value)}
-                    />
+                    />   
                 </FormControl>
+                
                 <FormControl>
                     <TextField
                         error={passwordError}
@@ -132,10 +160,11 @@ export default function SignInCard() {
                 <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
                     הכנס
                 </Button>
+               
                 <Typography sx={{ textAlign: 'center' }} >
-                    אין לך עדיין חשבון?{" "}
+                    יש לך כבר חשבון?{" "}
                     
-                    <Link to={"/register"}>צור חשבון</Link>
+                    <Link to={"/login"}>כניסה</Link>
                 </Typography>
             </Box>
         </Card>
