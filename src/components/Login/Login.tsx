@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
@@ -31,7 +31,6 @@ export default function SignInCard() {
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-    const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         if (emailError || passwordError) {
@@ -135,9 +134,8 @@ export default function SignInCard() {
                 </Button>
                 <Typography sx={{ textAlign: 'center' }} >
                     אין לך עדיין חשבון?{" "}
-                    <a style={{ color: 'blue', cursor: 'pointer', display: 'inline' }} onClick={() => navigate('/register')} onTouchStart={() => navigate('/register')}>
-                        צור חשבון
-                    </a>
+                    
+                    <Link to={"/register"}>צור חשבון</Link>
                 </Typography>
             </Box>
         </Card>
