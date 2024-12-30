@@ -151,9 +151,9 @@ const clearErrors = (e:string|null) => {
                 </Button>
                 <Typography sx={{ textAlign: 'center' }}>
                     אין לך עדיין חשבון?{" "}
-                    <span style={{ color: 'blue', cursor: 'pointer' }} onClick={() => navigate('/register')}>
+                    <a style={{ color: 'blue', cursor: 'pointer', display: 'inline' }} onClick={() => navigate('/register')}>
                         צור חשבון
-                    </span>
+                    </a>
                 </Typography>
             </Box>
 
