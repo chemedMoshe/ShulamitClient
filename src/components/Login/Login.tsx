@@ -133,9 +133,9 @@ export default function SignInCard() {
                 <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
                     הכנס
                 </Button>
-                <Typography sx={{ textAlign: 'center' }} onClick={() => navigate('/register')}>
+                <Typography sx={{ textAlign: 'center' }} >
                     אין לך עדיין חשבון?{" "}
-                    <a style={{ color: 'blue', cursor: 'pointer', display: 'inline' }} >
+                    <a style={{ color: 'blue', cursor: 'pointer', display: 'inline' }} onClick={() => navigate('/register')} onTouchStart={() => navigate('/register')}>
                         צור חשבון
                     </a>
                 </Typography>
