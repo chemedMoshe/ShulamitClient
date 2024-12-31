@@ -12,9 +12,10 @@ const Footer: React.FC = () => {
         variant="body1" color="textSecondary" margin={0}
         >0546204619</Typography>
         <a
-          href="https://wa.me/972546204619" target="_blank"
+        className='WhatsappIcone'
+          href="https://did.li/Shulamit" target="_blank"
         >
-          <FaWhatsappSquare color='green' height={25}  width={25}/>
+          <FaWhatsappSquare color='#25D366'/>
         </a>
         <Typography variant="body2" color="textSecondary" margin={0}>
           כל הזכויות שמורות © 2024

@@ -6,7 +6,10 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { registerFetch } from '../../redux/ExtraRedusers/RegisterExtraReduser';
+import { useSelector } from 'react-redux';
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
@@ -33,10 +36,21 @@ export default function RegisterCard() {
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
     const[nameError, setNameError] = React.useState(false);
     const[nameErrorMessage, setNameErrorMessage] = React.useState('');
+    const dispatch = useAppDispatch();  
+    const navigate = useNavigate(); 
+    const nameUser =  useSelector((state:RootState)=> state.myUser.name);
+
+React.useEffect(() => {
+   if(nameUser){
+    navigate('/login');
+    return
+   }
+}, [nameUser]);
+
    
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (emailError || passwordError||nameError) {
-            event.preventDefault();
             return;
         }
         const data = new FormData(event.currentTarget);
@@ -44,6 +58,7 @@ export default function RegisterCard() {
             email: data.get('email'),
             password: data.get('password'),
         });
+        dispatch(registerFetch({ email: data.get('email') as string, password: data.get('password') as string, name: data.get('name') as string }));
     };
 
     const validateInputs = () => {
