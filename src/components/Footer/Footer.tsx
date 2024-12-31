@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
         >0546204619</Typography>
         <a
         className='WhatsappIcone'
-          href="https://did.li/Shulamit" target="_blank"
+          href="https://katzr.net/3021db" target="_blank"
         >
           <FaWhatsappSquare color='#25D366'/>
         </a>
