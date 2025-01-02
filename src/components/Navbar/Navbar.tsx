@@ -1,10 +1,10 @@
 import * as React from 'react';
+import './Navbar.css';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,6 +15,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router';
+import { Button } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -56,14 +59,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+    const idUser = useSelector((state: RootState) => state.myUser._id);
+    const [isLogin, setIsLogin] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-        React.useState<null | HTMLElement>(null);
-
+        
+    React.useState<null | HTMLElement>(null);
+   
+    React.useEffect(() => {
+        if (localStorage.getItem('user')) {
+            setIsLogin(true);
+        }
+    },[idUser])
+   
     const navigate = useNavigate();    
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+     
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -160,24 +172,16 @@ export default function PrimarySearchAppBar() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{backgroundColor:'#f78799'}}>
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
+                {!isLogin&& <Button
+                    className='LoginButton'
                         color="inherit"
                         aria-label="open drawer"
-                        sx={{ mr: 2 }}
                         onClick={()=>navigate('/login')}
-                    >
-                        login
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
-                    >
-                        LOGO
-                    </Typography>
+                                            >
+                       כניסה
+                    </Button>
+}
+                   
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />

@@ -1,0 +1,17 @@
+.LoginButton {
+    background-color: #f6f4f670 !important;
+    color: rgb(75, 54, 1) !important
+}
+
+.LoginButton:hover {
+    background-color: #f6f4f6a8 !important;
+}
+
+.LoginButton:active {
+    box-shadow: 0px 1px 0px 0px;
+    transform : scale(0.91);
+
+transition: transform 0.1s ease-in-out;
+
+
+}
