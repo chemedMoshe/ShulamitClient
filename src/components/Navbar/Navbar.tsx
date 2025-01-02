@@ -177,7 +177,7 @@ export default function PrimarySearchAppBar() {
                         color="inherit"
                         aria-label="open drawer"
                         onClick={()=>navigate('/login')}
-                                            >
+                        sx={{marginRight: '2%'}}                    >
                        כניסה
                     </Button>
 }
