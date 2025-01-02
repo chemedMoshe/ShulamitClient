@@ -9,7 +9,8 @@ import { styled } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { registerFetch } from '../../redux/ExtraRedusers/RegisterExtraReduser';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearError } from '../../redux/UserSlice';
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
@@ -30,37 +31,39 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function RegisterCard() {
+    const [email, setEmail] = React.useState('');
     const [emailError, setEmailError] = React.useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+    const [password, setPassword] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-    const[nameError, setNameError] = React.useState(false);
-    const[nameErrorMessage, setNameErrorMessage] = React.useState('');
-    const errorMessage  = useSelector((state: RootState) => state.myUser.error);
-    
-    const dispatch = useAppDispatch();  
-    const navigate = useNavigate(); 
-    const nameUser =  useSelector((state:RootState)=> state.myUser.name);
+    const [nameError, setNameError] = React.useState(false);
+    const [name, setName] = React.useState('');
+    const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+    const errorMessage = useSelector((state: RootState) => state.myUser.error);
 
-React.useEffect(() => {
-   if(nameUser){
-    navigate('/login');
-    return
-   }
-}, [nameUser]);
+    const appDispatch = useAppDispatch();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const nameUser = useSelector((state: RootState) => state.myUser.name);
 
-   
-        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (emailError || passwordError||nameError) {
+    React.useEffect(() => {
+        if (nameUser) {
+            navigate('/login');
             return;
         }
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-        dispatch(registerFetch({ email: data.get('email') as string, password: data.get('password') as string, name: data.get('name') as string }));
+    }, [nameUser]);
+
+React.useEffect(() => {
+        dispatch(clearError());
+    }, []);
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (emailError || passwordError || nameError) {
+            return;
+        }
+
+        appDispatch(registerFetch({ email, password, name }));
     };
 
     const validateInputs = () => {
@@ -83,12 +86,12 @@ React.useEffect(() => {
             setPasswordErrorMessage('Password must be at least 6 characters long.');
             isValid = false;
         }
-        if(!name.value){
+        if (!name.value) {
             setNameError(true);
             setNameErrorMessage('Please enter a valid name.');
             isValid = false;
         }
-         else {
+        else {
             setPasswordError(false);
             setPasswordErrorMessage('');
         }
@@ -134,10 +137,13 @@ React.useEffect(() => {
                         fullWidth
                         variant="outlined"
                         color={nameError ? 'error' : 'primary'}
-                        onChange={(e) => clearErrors(e.target.value)}
+                        onChange={(e) => {
+                            setName(e.target.value);
+                            clearErrors(e.target.value);
+                        }}
                     />
                 </FormControl>
-                   
+
                 <FormControl>
                     <TextField
                         error={emailError}
@@ -152,10 +158,13 @@ React.useEffect(() => {
                         fullWidth
                         variant="outlined"
                         color={emailError ? 'error' : 'primary'}
-                        onChange={(e) => clearErrors(e.target.value)}
-                    />   
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                            clearErrors(e.target.value);
+                        }}
+                    />
                 </FormControl>
-                
+
                 <FormControl>
                     <TextField
                         error={passwordError}
@@ -170,17 +179,18 @@ React.useEffect(() => {
                         fullWidth
                         variant="outlined"
                         color={passwordError ? 'error' : 'primary'}
-                        onChange={(e) => clearErrors(e.target.value)}
+                        onChange={(e) => { setPassword(e.target.value);
+                             clearErrors(e.target.value); }}
                     />
                 </FormControl>
 
                 <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
                     הכנס
                 </Button>
-               
+
                 <Typography sx={{ textAlign: 'center' }} >
                     יש לך כבר חשבון?{" "}
-                    
+
                     <Link to={"/login"}>כניסה</Link>
                 </Typography>
                 {errorMessage && <Typography sx={{ textAlign: 'center', color: 'red' }} >{errorMessage}</Typography>}

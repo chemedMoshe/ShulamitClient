@@ -16,6 +16,6 @@ export const registerFunc = async (email: string, password: string, name: string
         return data;
     } catch (error) {
         console.error('Error:', error);
-        throw error;
+        throw `${error}`;
     }
 };

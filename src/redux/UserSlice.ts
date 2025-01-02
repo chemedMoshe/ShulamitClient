@@ -22,6 +22,9 @@ const userSlice = createSlice({
             state.name = null;
             state.email = null;
         },
+        clearError: (state) => {
+            state.error = null;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(registerFetch.pending, (state) => {
@@ -43,7 +46,7 @@ const userSlice = createSlice({
         builder.addCase(registerFetch.rejected, (state, action) => {
             state.loading = false;
             
-            state.error = action.payload as string;
+            state.error = action.payload as string || "הרשמה כשלה";
             state.success = false;
             state._id = null;
             state.name = null;
@@ -86,6 +89,6 @@ const userSlice = createSlice({
 
 
 
-export const { logout } = userSlice.actions;
+export const { logout, clearError } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -8,7 +8,6 @@ export const registerFetch = createAsyncThunk('user/register',
         const response = await registerFunc(email, password, name);
         return thankApi.fulfillWithValue(response);
     } catch (e) {
-        console.log(e);
         return thankApi.rejectWithValue(e);
     }
 }); 

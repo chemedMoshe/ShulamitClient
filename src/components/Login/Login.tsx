@@ -9,7 +9,8 @@ import { styled } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loginFetch } from '../../redux/ExtraRedusers/LoginExtraReduser';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearError } from '../../redux/UserSlice';
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
@@ -35,8 +36,9 @@ export default function SignInCard() {
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
     const idUser = useSelector((state: RootState) => state.myUser._id);
-    const errorMessage  = useSelector((state: RootState) => state.myUser.error);
-    const dispatch = useAppDispatch();
+    const errorMessage = useSelector((state: RootState) => state.myUser.error);
+    const appDispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     React.useEffect(() => {
@@ -45,12 +47,16 @@ export default function SignInCard() {
         }
     }, [idUser]);
 
+    React.useEffect(() => {
+        dispatch(clearError());
+    }, []);
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (emailError || passwordError) {
             return;
         }
-        dispatch(loginFetch({ email: (document.getElementById('email') as HTMLInputElement).value, password: (document.getElementById('password') as HTMLInputElement).value }));
+        appDispatch(loginFetch({ email: (document.getElementById('email') as HTMLInputElement).value, password: (document.getElementById('password') as HTMLInputElement).value }));
         const data = new FormData(event.currentTarget);
         console.log({
             email: data.get('email'),
