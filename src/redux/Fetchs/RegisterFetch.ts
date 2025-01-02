@@ -7,12 +7,12 @@ export const registerFunc = async (email: string, password: string, name: string
             },
             body: JSON.stringify({ email, password, name }),
         });
+        const data = await response.json(); 
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        if (response.status !== 201) {
+            throw (`${data.error}`);
         }
 
-        const data = await response.json(); 
         return data;
     } catch (error) {
         console.error('Error:', error);

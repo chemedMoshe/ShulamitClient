@@ -2,11 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { registerFunc } from "../Fetchs/RegisterFetch";
 import { RegisterDTO } from "../Types/RegisterDTO";
 
-export const registerFetch = createAsyncThunk('user/register', async ({ email, password, name }: RegisterDTO) => {
+export const registerFetch = createAsyncThunk('user/register', 
+    async ({ email, password, name }: RegisterDTO,thankApi) => {
     try {        
         const response = await registerFunc(email, password, name);
-        return response;
+        return thankApi.fulfillWithValue(response);
     } catch (e) {
-        throw e;
+        console.log(e);
+        return thankApi.rejectWithValue(e);
     }
 }); 

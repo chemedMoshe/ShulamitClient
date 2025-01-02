@@ -6,7 +6,10 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { loginFetch } from '../../redux/ExtraRedusers/LoginExtraReduser';
+import { useSelector } from 'react-redux';
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
@@ -31,12 +34,23 @@ export default function SignInCard() {
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+    const idUser = useSelector((state: RootState) => state.myUser._id);
+    const errorMessage  = useSelector((state: RootState) => state.myUser.error);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (localStorage.getItem('user')) {
+            navigate('/');
+        }
+    }, [idUser]);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (emailError || passwordError) {
-            event.preventDefault();
             return;
         }
+        dispatch(loginFetch({ email: (document.getElementById('email') as HTMLInputElement).value, password: (document.getElementById('password') as HTMLInputElement).value }));
         const data = new FormData(event.currentTarget);
         console.log({
             email: data.get('email'),
@@ -86,7 +100,7 @@ export default function SignInCard() {
                 variant="h4"
                 sx={{ width: '80%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
             >
-               התחברות
+                התחברות
             </Typography>
             <Box
                 component="form"
@@ -134,9 +148,10 @@ export default function SignInCard() {
                 </Button>
                 <Typography sx={{ textAlign: 'center' }} >
                     אין לך עדיין חשבון?{" "}
-                    
+
                     <Link to={"/register"}>צור חשבון</Link>
                 </Typography>
+                {errorMessage && <Typography sx={{ textAlign: 'center', color: 'red' }} >{errorMessage}</Typography>}
             </Box>
         </Card>
     );

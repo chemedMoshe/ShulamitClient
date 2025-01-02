@@ -36,6 +36,8 @@ export default function RegisterCard() {
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
     const[nameError, setNameError] = React.useState(false);
     const[nameErrorMessage, setNameErrorMessage] = React.useState('');
+    const errorMessage  = useSelector((state: RootState) => state.myUser.error);
+    
     const dispatch = useAppDispatch();  
     const navigate = useNavigate(); 
     const nameUser =  useSelector((state:RootState)=> state.myUser.name);
@@ -181,6 +183,8 @@ React.useEffect(() => {
                     
                     <Link to={"/login"}>כניסה</Link>
                 </Typography>
+                {errorMessage && <Typography sx={{ textAlign: 'center', color: 'red' }} >{errorMessage}</Typography>}
+
             </Box>
         </Card>
     );

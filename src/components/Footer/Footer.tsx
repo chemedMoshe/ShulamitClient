@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   return (
     <div className="Footer">
         <Typography variant="body1" color="textSecondary" margin={0}>
-          שולמית בר כהנים - ייעוץ וטיפול זוגי.
+          שולמית בר כוהנים - ייעוץ וטיפול זוגי.
         </Typography>
         <Typography
         variant="body1" color="textSecondary" margin={0}
