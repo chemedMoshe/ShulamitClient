@@ -9,8 +9,8 @@ export const registerFunc = async (email: string, password: string, name: string
         });
         const data = await response.json(); 
 
-        if (response.status !== 201) {
-            throw (`${data.error}`);
+        if (data.error) {
+           throw (`${data.error}`);
         }
 
         return data;

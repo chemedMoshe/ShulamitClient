@@ -110,6 +110,8 @@ export default function PrimarySearchAppBar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
+            <MenuItem onClick={handleMenuClose} >מאמרים</MenuItem>
+            <MenuItem onClick={handleMenuClose}>שאלות ותשובות</MenuItem>
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
             <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
@@ -189,7 +191,7 @@ export default function PrimarySearchAppBar() {
                         <StyledInputBase
                             onChange={(e) => console.log(e.target.value)}
 
-                            placeholder="Search…"
+                            placeholder="חיפוש"
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
