@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { loginFetch } from '../../redux/ExtraRedusers/LoginExtraReduser';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearError } from '../../redux/UserSlice';
+import { clearError } from '../../redux/Slice/UserSlice';
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',

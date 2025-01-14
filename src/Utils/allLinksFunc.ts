@@ -1,15 +1,15 @@
-export interface IreturnLinks {
-    mame: string,
+export interface ILink {
+    name: string,
     link: string;
 }
 
-export const listLinks: IreturnLinks[] = [
-    { mame: 'Home', link: '/' },
-    { mame: 'Login', link: '/login' },
-    { mame: 'Register', link: '/register' },
+export const listLinks: ILink[] = [
+    { name: 'בית', link: '/' },
+    {name:'מאמרים',link:'/post'},
+    {name:'שאלות ותשובות',link:'/faq'}
+
 ];
 
-export const returnLinks = ()=>{
-const user = localStorage.getItem('user')
-return user?listLinks.filter((link)=>(link.link!=='/login'&& link.link!=='/register')):listLinks
-}
+export const returnLinks = () => {
+    return listLinks
+};

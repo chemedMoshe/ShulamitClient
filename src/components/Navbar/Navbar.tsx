@@ -14,10 +14,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { useNavigate } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import { Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { ILink, returnLinks } from '../../Utils/allLinksFunc';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -63,19 +64,24 @@ export default function PrimarySearchAppBar() {
     const [isLogin, setIsLogin] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-        
-    React.useState<null | HTMLElement>(null);
-   
+        React.useState<null | HTMLElement>(null);
+    const [allLinks, setAllLinks] = React.useState<ILink[]|[]>([]);  
+
     React.useEffect(() => {
         if (localStorage.getItem('user')) {
             setIsLogin(true);
         }
-    },[idUser])
-   
-    const navigate = useNavigate();    
+    }, [idUser]);
+
+    React.useEffect(() => {
+        const newLinks = returnLinks();
+        setAllLinks(newLinks);
+    }, []);
+
+    const navigate = useNavigate();
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-     
+
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -110,8 +116,6 @@ export default function PrimarySearchAppBar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose} >מאמרים</MenuItem>
-            <MenuItem onClick={handleMenuClose}>שאלות ותשובות</MenuItem>
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
             <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
@@ -135,6 +139,22 @@ export default function PrimarySearchAppBar() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
+            <MenuItem>
+                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                    <Badge badgeContent={4} color="error">
+                        <MailIcon />
+                    </Badge>
+                </IconButton>
+                <p>מאמרים</p>
+            </MenuItem>
+            <MenuItem>
+                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                    <Badge badgeContent={4} color="error">
+                        <MailIcon />
+                    </Badge>
+                </IconButton>
+                <p>שאלות ותשובות</p>
+            </MenuItem>
             <MenuItem>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={4} color="error">
@@ -172,18 +192,18 @@ export default function PrimarySearchAppBar() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{backgroundColor:'#f78799'}}>
+            <AppBar position="static" sx={{ backgroundColor: '#f78799' }}>
                 <Toolbar>
-                {!isLogin&& <Button
-                    className='LoginButton'
+                    {!isLogin && <Button
+                        className='LoginButton'
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={()=>navigate('/login')}
-                        sx={{marginRight: '2%'}}                    >
-                       כניסה
+                        onClick={() => navigate('/login')}
+                        sx={{ marginRight: '2%' }}                    >
+                        כניסה
                     </Button>
-}
-                   
+                    }
+
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -196,32 +216,14 @@ export default function PrimarySearchAppBar() {
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
+                    
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="error">
-                                <MailIcon />
+                        {allLinks.map((link:ILink) =>
+                            <Badge badgeContent={4} color="error" key={link.name}>
+                            <NavLink to={link.link} className='link'>{link.name}</NavLink>
                             </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={17} color="error">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
+                            
+                        )}
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton

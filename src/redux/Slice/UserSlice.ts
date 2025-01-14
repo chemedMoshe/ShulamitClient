@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IinitialState } from "./Types/initialState";
-import { registerFetch } from "./ExtraRedusers/RegisterExtraReduser";
-import { loginFetch } from "./ExtraRedusers/LoginExtraReduser";
+import { IinitialUserState } from ".././Types/initialState";
+import { registerFetch } from ".././ExtraRedusers/RegisterExtraReduser";
+import { loginFetch } from ".././ExtraRedusers/LoginExtraReduser";
 
-const initialState: IinitialState = {
+const initialState: IinitialUserState = {
     _id: null,
     name: null,
     email: null,
@@ -77,7 +77,6 @@ const userSlice = createSlice({
 
         builder.addCase(loginFetch.rejected, (state, action) => {
             state.loading = false;
-            console.log(action.payload);
             state.error = action.payload as string;
             state.success = false;
             state._id = null;
