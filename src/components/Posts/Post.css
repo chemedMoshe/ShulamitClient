@@ -1,0 +1,12 @@
+.posts-container{
+    width: 90%;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    scrollbar-width: none; 
+    background-color: rgba(109, 248, 239, 0.529);
+    box-shadow:5px 5px 10px rgb(58, 58, 58);
+
+}

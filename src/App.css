@@ -1,24 +1,35 @@
 
 .app{
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto; 
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbar{
-    max-width: 100vw;
+    width: 100%;
+}
+.navbarScroll{
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 .content{
-    width: 100%;
     background: url("../רקע.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 2em;
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+}
+.Footer{
+    width: 100%;
 }

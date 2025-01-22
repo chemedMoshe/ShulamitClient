@@ -1,3 +1,5 @@
+import { PostType } from "./PostType";
+
 export interface IinitialUserState {
     _id: null | string
     name: null | string
@@ -8,9 +10,7 @@ export interface IinitialUserState {
 }
 
 export interface IinitialPostState {
-    _id: null | string
-    title: null | string
-    body: null | string
+    postList: null | PostType[]
     loading: boolean
     error: null | string
     success: boolean
