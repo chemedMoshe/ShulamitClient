@@ -3,6 +3,8 @@ import "./App.css";
 import Footer from "./components/Footer/Footer";
 import PrimarySearchAppBar from "./components/Navbar/Navbar";
 import Pages from "./components/Pages";
+
+
 export default function App() {
   const [classNameNav, setClassNameNav] = useState("navbar");
   const [currentScrollY, setCurrentScrollY] = useState(window.scrollY);
@@ -13,8 +15,9 @@ export default function App() {
       return
     }
     if (window.scrollY < currentScrollY) {
+      
       setClassNameNav("navbarScroll");
-    } else {
+    } else if (window.scrollY > currentScrollY) {
       setClassNameNav("navbar");
     }
     setCurrentScrollY(window.scrollY);
