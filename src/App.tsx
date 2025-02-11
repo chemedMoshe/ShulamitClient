@@ -3,34 +3,17 @@ import "./App.css";
 import Footer from "./components/Footer/Footer";
 import PrimarySearchAppBar from "./components/Navbar/Navbar";
 import Pages from "./components/Pages";
-
+import Headroom from "react-headroom"
 
 export default function App() {
-  const [classNameNav, setClassNameNav] = useState("navbar");
-  const [currentScrollY, setCurrentScrollY] = useState(window.scrollY);
-
-  const handleScroll = () => {
-    if(window.scrollY == 0){
-      setClassNameNav("navbar")
-      return
-    }
-    if (window.scrollY < currentScrollY) {
-      
-      setClassNameNav("navbarScroll");
-    } else if (window.scrollY > currentScrollY) {
-      setClassNameNav("navbar");
-    }
-    setCurrentScrollY(window.scrollY);
-  };
-
-  window.addEventListener("scroll", handleScroll);
 
   return (
     <div className="app">
-      <div className={classNameNav}>
+      <div className="nav">
+      <Headroom>
         <PrimarySearchAppBar />
+      </Headroom>
       </div>
-
       <div className="content">
         <Pages />
       </div>

@@ -8,14 +8,10 @@
     /* justify-content: center; */
 }
 
-.navbar{
+.nav{
     width: 100%;
 }
-.navbarScroll{
-    position: fixed;
-    width: 100%;
-    top: 0;
-}
+
 .content{
     background: url("../רקע.jpg");
     background-size: cover;
