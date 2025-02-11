@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .navbar{
@@ -22,8 +22,9 @@
     background-position: center;
     background-repeat: no-repeat;
     padding: 2em;
-    min-height: 100vh;
+    height: 100%;
     width: 100%;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
