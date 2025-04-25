@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import SignInCard from "./Login/Login";
 import RegisterCard from "./Register/register";
 import Home from "./Home/Home";
-import PostContainer from "./Posts/post";
+import PostContainer from "./Posts/PostContinar";
 
 export default function Pages() {
   return (

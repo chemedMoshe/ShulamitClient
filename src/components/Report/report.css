@@ -1,0 +1,46 @@
+.report {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0.5rem;
+    width: 30%;
+    
+}
+
+button {
+    box-shadow:  2px 2px 1px 2 rgb(13, 13, 13);
+    padding: 0.5rem;
+    background-color: rgb(105, 104, 104);
+    border: none;
+    width: 100%;
+}
+
+
+.like-button {
+    border-radius: 50px 0 0 50px;
+    border-right: 2px  0 2px 0 solid rgb(105, 104, 104);
+    transition: all 0.3s ease;
+}
+
+.like-button:hover {
+    background-color: rgb(3, 172, 3);
+    color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+}
+.unlike-button {
+    border-left: 0 2px 0 2px solid rgb(105, 104, 104);
+    border-radius: 0 50px 50px 0;
+    transition: all 0.3s ease;
+}
+
+.unlike-button:hover {
+    background-color: rgb(246, 19, 3);
+    color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
+}
+
+.like-button:active, .unlike-button:active {
+    transform: translateY(-20px); 
+    transition: all 0.3s ease;
+
+}

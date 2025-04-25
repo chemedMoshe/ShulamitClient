@@ -3,6 +3,8 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { useEffect } from 'react';
 import { getAllPostsFetch } from '../../redux/ExtraRedusers/Post/GetAllExtraReduser';
 import './Post.css';
+import PostItem from './PostItem';
+
 
 export default function PostsDashboard() {
   const appDispatch = useAppDispatch();
@@ -13,13 +15,12 @@ export default function PostsDashboard() {
   }, []);
 
   return (
+    <>
     <div className="posts-container">
       {posts?.map((post, index) => (
-        <div className="post" key={index}>
-          <h2>{post.header}</h2>
-          <p>{post.content?.split(' ').length > 4 ? post.content.split(' ').slice(0,4).join(' ') + '...' : post.content}</p>
-        </div>
+        <PostItem key={index} post={post} />
       ))}
     </div>
+    </>
   );
 }

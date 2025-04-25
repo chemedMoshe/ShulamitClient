@@ -6,7 +6,22 @@
     flex-direction: column;
     gap: 1em;
     scrollbar-width: none; 
-    background-color: rgba(109, 248, 239, 0.529);
-    box-shadow:5px 5px 10px rgb(58, 58, 58);
+    
+}
 
+.post-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 1rem;
+    text-align: center;
+    background-color: rgba(240, 248, 255, 0.904);
+    box-shadow:5px 5px 10px rgb(58, 58, 58);
+    direction: rtl;
+}
+
+.content-post {
+    text-align: right;
+    white-space: pre-wrap;
 }
