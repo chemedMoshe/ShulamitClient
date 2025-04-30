@@ -139,29 +139,21 @@ export default function PrimarySearchAppBar() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            <MenuItem onClick={handleMenuClose}>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={4} color="error">
                         <MailIcon />
                     </Badge>
                 </IconButton>
-                <p>מאמרים</p>
+                <p onClick={() => navigate('/post')}>מאמרים</p>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={handleMenuClose}>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={4} color="error">
                         <MailIcon />
                     </Badge>
                 </IconButton>
-                <p>שאלות ותשובות</p>
-            </MenuItem>
-            <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
+                <p onClick={() => navigate('/weather')}>מזג אוויר זוגי</p>
             </MenuItem>
             <MenuItem>
                 <IconButton
