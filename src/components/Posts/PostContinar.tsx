@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { useEffect } from 'react';
-import { getAllPostsFetch } from '../../redux/ExtraRedusers/Post/GetAllExtraReduser';
+import { getAllPostsReduser } from '../../redux/ExtraRedusers/Post/GetAllExtraReduser';
 import './Post.css';
 import PostItem from './PostItem';
 
@@ -11,7 +11,7 @@ export default function PostsDashboard() {
   const posts = useSelector((state: RootState) => state.post.postList);
 
   useEffect(() => {
-    appDispatch(getAllPostsFetch());
+    appDispatch(getAllPostsReduser());
   }, []);
 
   return (

@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { registerFetch } from '../../redux/ExtraRedusers/RegisterExtraReduser';
+import { registerReduser } from '../../redux/ExtraRedusers/RegisterExtraReduser';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearError } from '../../redux/Slice/UserSlice';
 
@@ -63,7 +63,7 @@ React.useEffect(() => {
             return;
         }
 
-        appDispatch(registerFetch({ email, password, name }));
+        appDispatch(registerReduser({ email, password, name }));
     };
 
     const validateInputs = () => {

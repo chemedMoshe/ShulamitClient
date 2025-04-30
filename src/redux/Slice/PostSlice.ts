@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IinitialPostState } from "../Types/initialState";
-import { getAllPostsFetch } from "../ExtraRedusers/Post/GetAllExtraReduser";
+import { getAllPostsReduser } from "../ExtraRedusers/Post/GetAllExtraReduser";
 import { PostType } from "../Types/PostType";
 
 const initialState: IinitialPostState = {
@@ -19,18 +19,18 @@ const postSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getAllPostsFetch.pending, (state) => {
+        builder.addCase(getAllPostsReduser.pending, (state) => {
             state.loading = true;
             state.error = null;
             state.success = false;
             state.postList = null;
         });
-        builder.addCase(getAllPostsFetch.fulfilled, (state, action:PayloadAction<PostType[]>) => {
+        builder.addCase(getAllPostsReduser.fulfilled, (state, action:PayloadAction<PostType[]>) => {
             state.postList = action.payload;
             state.loading = false;
             state.error = null;
         });
-        builder.addCase(getAllPostsFetch.rejected, (state, action) => {
+        builder.addCase(getAllPostsReduser.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload as string;
             state.success = false;

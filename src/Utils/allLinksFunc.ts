@@ -6,7 +6,7 @@ export interface ILink {
 export const listLinks: ILink[] = [
     { name: 'בית', link: '/' },
     {name:'מאמרים',link:'/post'},
-    {name:'שאלות ותשובות',link:'/faq'}
+    {name:'מזג אוויר זוגי',link:'/weather'},
 
 ];
 

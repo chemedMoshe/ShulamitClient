@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { loginFetch } from '../../redux/ExtraRedusers/LoginExtraReduser';
+import { loginReduser } from '../../redux/ExtraRedusers/LoginExtraReduser';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearError } from '../../redux/Slice/UserSlice';
 
@@ -56,7 +56,7 @@ export default function SignInCard() {
         if (emailError || passwordError) {
             return;
         }
-        appDispatch(loginFetch({ email: (document.getElementById('email') as HTMLInputElement).value, password: (document.getElementById('password') as HTMLInputElement).value }));
+        appDispatch(loginReduser({ email: (document.getElementById('email') as HTMLInputElement).value, password: (document.getElementById('password') as HTMLInputElement).value }));
         const data = new FormData(event.currentTarget);
         console.log({
             email: data.get('email'),

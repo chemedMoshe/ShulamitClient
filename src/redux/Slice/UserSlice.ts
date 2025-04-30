@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IinitialUserState } from ".././Types/initialState";
-import { registerFetch } from ".././ExtraRedusers/RegisterExtraReduser";
-import { loginFetch } from ".././ExtraRedusers/LoginExtraReduser";
+import { registerReduser } from ".././ExtraRedusers/RegisterExtraReduser";
+import { loginReduser } from ".././ExtraRedusers/LoginExtraReduser";
 
 const initialState: IinitialUserState = {
     _id: null,
@@ -27,7 +27,7 @@ const userSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(registerFetch.pending, (state) => {
+        builder.addCase(registerReduser.pending, (state) => {
             state.loading = true;
             state.error = null;
             state.success = false;
@@ -36,7 +36,7 @@ const userSlice = createSlice({
             state.email = null;
         });
 
-        builder.addCase(registerFetch.fulfilled,
+        builder.addCase(registerReduser.fulfilled,
             (state, action) => {
                 state._id = action.payload._id;
                 state.name = action.payload.name;
@@ -45,7 +45,7 @@ const userSlice = createSlice({
                 state.error = null;
             });
 
-        builder.addCase(registerFetch.rejected, (state, action) => {
+        builder.addCase(registerReduser.rejected, (state, action) => {
             state.loading = false;
             
             state.error = action.payload as string || "הרשמה כשלה";
@@ -56,7 +56,7 @@ const userSlice = createSlice({
         });
 
 
-        builder.addCase(loginFetch.pending, (state) => {
+        builder.addCase(loginReduser.pending, (state) => {
             state.loading = true;
             state.error = null;
             state.success = false;
@@ -65,7 +65,7 @@ const userSlice = createSlice({
             state.email = null;
         });
 
-        builder.addCase(loginFetch.fulfilled,
+        builder.addCase(loginReduser.fulfilled,
             (state, action) => {
                 state._id = action.payload._id;
                 state.name = action.payload.name;
@@ -75,7 +75,7 @@ const userSlice = createSlice({
                 state.success = true;
             });
 
-        builder.addCase(loginFetch.rejected, (state, action) => {
+        builder.addCase(loginReduser.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload as string;
             state.success = false;
