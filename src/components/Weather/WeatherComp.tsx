@@ -27,6 +27,7 @@ const WeatherComp = () => {
   return (
     weather && (
       <div className="weather-container">
+        <div className="city">📍 עיר: {weather.name}</div>
         <h1 className="weather-title">מזג האוויר</h1>
 
         <img
@@ -34,10 +35,10 @@ const WeatherComp = () => {
           alt="weather icon"
           className="weather-icon"
         />
+          <div className="temp">{ Number.parseInt(weather.main.temp.toString())}°C</div>
         <p className="description">{weather.weather[0].description}</p>
 
         <div className="weather-grid">
-          <div>🌡️ טמפרטורה: {weather.main.temp}°C</div>
           <div>🌡️ מינימלית: {weather.main.temp_min}°C</div>
           <div>🌡️ מקסימלית: {weather.main.temp_max}°C</div>
           <div>🥵 מורגשת: {weather.main.feels_like}°C</div>
@@ -47,7 +48,6 @@ const WeatherComp = () => {
           <div>☁️ עננות: {weather.clouds.all}%</div>
           <div>🌅 זריחה: {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}</div>
           <div>🌇 שקיעה: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</div>
-          <div>📍 עיר: {weather.name}</div>
           <div>📅 תאריך: {new Date(weather.dt * 1000).toLocaleDateString()}</div>
           <div className="updated">🕒 עודכן ב־{new Date(weather.dt * 1000).toLocaleTimeString()}</div>
         </div>
