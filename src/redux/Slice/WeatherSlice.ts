@@ -21,8 +21,6 @@ const weatherSlice = createSlice({
             state.weatherData = null;
         });
         builder.addCase(weatherReducer.fulfilled, (state, action) => {
-            console.log(action.payload, 'action.payload');
-            
             state.weatherData = action.payload;
             state.loading = false;
             state.error = null;

@@ -35,7 +35,7 @@ const WeatherComp = () => {
           alt="weather icon"
           className="weather-icon"
         />
-          <div className="temp">{ Number.parseInt(weather.main.temp.toString())}°C</div>
+          <div className="temp">{ Number.parseInt(weather.main.temp.toString())}° מעלות</div>
         <p className="description">{weather.weather[0].description}</p>
 
         <div className="weather-grid">
