@@ -1,60 +1,60 @@
 .weather-container {
-    max-width: 600px;
-    background: linear-gradient(0, rgb(249, 175, 3), #02c2db);
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    direction: rtl;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:1rem;
-  }
-  
-  .weather-title {
-    font-size: 2rem;
-    text-align: center;
-    color: rgba(245, 245, 245, 0.907);
-    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
-  }
-  
-  .city {
-    align-self: flex-end;
-  }
+  width: 80%;
+  max-width: 600px;
+  background: linear-gradient(0, rgb(249, 175, 3), #02c2db);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
 
-  .weather-icon {
-    display: block;
-    text-align: center;
-    width: 5rem;
-    height: 5rem;
-  }
-  
-  .temp {
-    font-size: 3rem;
-    text-align: center;
-    color: #0077b6;
-  }
+.weather-title {
+  font-size: 2rem;
+  text-align: center;
+  color: rgba(245, 245, 245, 0.907);
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
 
-  .description {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #444;
-  }
-  
-  .weather-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    font-size: 1rem;
-  }
-  
-  .updated {
-    grid-column: span 2;
-    text-align: center;
-    color: #666;
-    font-style: italic;
-    margin-top: 1rem;
-  }
-  
+.city {
+  align-self: flex-end;
+}
+
+.weather-icon {
+  display: block;
+  text-align: center;
+  width: 5rem;
+  height: 5rem;
+}
+
+.temp {
+  font-size: 3rem;
+  text-align: center;
+  color: #0077b6;
+}
+
+.description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.updated {
+  grid-column: span 2;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin-top: 1rem;
+}
