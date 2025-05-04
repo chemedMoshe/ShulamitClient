@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { weatherReducer } from "../../redux/ExtraRedusers/WeatherExtraReduser";
 import { useSelector } from "react-redux";
-import { WeatherResponse } from "../../redux/Types/initialState";
 import "./Weather.css";
 
 
