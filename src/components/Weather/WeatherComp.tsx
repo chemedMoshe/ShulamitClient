@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { WeatherResponse } from "../../redux/Types/initialState";
 import "./Weather.css";
 
+
 export interface IWeather {
   lat: number;
   lon: number;
@@ -15,14 +16,25 @@ const WeatherComp = () => {
   const weather: WeatherResponse | null = useSelector(
     (state: RootState) => state.weather.weatherData
   );
-  const [location, ] = useState<IWeather | null>({
-    lat: 32.0853,
-    lon: 34.7818,
-  });
+  const [location, setLocation] = useState<IWeather | null>(null);
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation({ lat: latitude, lon: longitude });
+      });
+    }
+    else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
 
   useEffect(() => {
-    appDispatch(weatherReducer(location!));
+    location && appDispatch(weatherReducer(location!));
   }, [location]);
+
+  useEffect(() => { getLocation() }, [])
 
   return (
     weather && (
@@ -35,7 +47,7 @@ const WeatherComp = () => {
           alt="weather icon"
           className="weather-icon"
         />
-          <div className="temp">{ Number.parseInt(weather.main.temp.toString())}° מעלות</div>
+        <div className="temp">{Number.parseInt(weather.main.temp.toString())}° מעלות</div>
         <p className="description">{weather.weather[0].description}</p>
 
         <div className="weather-grid">
