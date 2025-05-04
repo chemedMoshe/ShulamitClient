@@ -13,8 +13,8 @@ export interface IWeather {
 
 const WeatherComp = () => {
   const appDispatch = useAppDispatch();
-  const weather: WeatherResponse | null = useSelector(
-    (state: RootState) => state.weather.weatherData
+  const weather = useSelector(
+    (state: RootState) => state.weather
   );
   const [location, setLocation] = useState<IWeather | null>(null);
 
@@ -37,35 +37,44 @@ const WeatherComp = () => {
   useEffect(() => { getLocation() }, [])
 
   return (
-    weather && (
+    weather.weatherData ? (
       <div className="weather-container">
-        <div className="city">📍 עיר: {weather.name}</div>
+        <div className="city">📍 עיר: {weather.weatherData.name}</div>
         <h1 className="weather-title">מזג האוויר</h1>
 
         <img
-          src={`${import.meta.env.VITE_WEATHER_API_ICON_URL}/${weather.weather[0].icon}@2x.png`}
+          src={`${import.meta.env.VITE_WEATHER_API_ICON_URL}/${weather.weatherData.weather[0].icon}@2x.png`}
           alt="weather icon"
           className="weather-icon"
         />
-        <div className="temp">{Number.parseInt(weather.main.temp.toString())}° מעלות</div>
-        <p className="description">{weather.weather[0].description}</p>
+        <div className="temp">{Number.parseInt(weather.weatherData.main.temp.toString())}° מעלות</div>
+        <p className="description">{weather.weatherData.weather[0].description}</p>
 
         <div className="weather-grid">
-          <div>🌡️ מינימלית: {weather.main.temp_min}°C</div>
-          <div>🌡️ מקסימלית: {weather.main.temp_max}°C</div>
-          <div>🥵 מורגשת: {weather.main.feels_like}°C</div>
-          <div>💧 לחות: {weather.main.humidity}%</div>
-          <div>🌫️ ראות: {weather.visibility} מטר</div>
-          <div>🌬️ רוח: {weather.wind.speed} מ'/ש'</div>
-          <div>☁️ עננות: {weather.clouds.all}%</div>
-          <div>🌅 זריחה: {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}</div>
-          <div>🌇 שקיעה: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</div>
-          <div>📅 תאריך: {new Date(weather.dt * 1000).toLocaleDateString()}</div>
-          <div className="updated">🕒 עודכן ב־{new Date(weather.dt * 1000).toLocaleTimeString()}</div>
+          <div>🌡️ מינימלית: {weather.weatherData.main.temp_min}°C</div>
+          <div>🌡️ מקסימלית: {weather.weatherData.main.temp_max}°C</div>
+          <div>🥵 מורגשת: {weather.weatherData.main.feels_like}°C</div>
+          <div>💧 לחות: {weather.weatherData.main.humidity}%</div>
+          <div>🌫️ ראות: {weather.weatherData.visibility} מטר</div>
+          <div>🌬️ רוח: {weather.weatherData.wind.speed} מ'/ש'</div>
+          <div>☁️ עננות: {weather.weatherData.clouds.all}%</div>
+          <div>🌅 זריחה: {new Date(weather.weatherData.sys.sunrise * 1000).toLocaleTimeString()}</div>
+          <div>🌇 שקיעה: {new Date(weather.weatherData.sys.sunset * 1000).toLocaleTimeString()}</div>
+          <div>📅 תאריך: {new Date(weather.weatherData.dt * 1000).toLocaleDateString()}</div>
+          <div className="updated">🕒 עודכן ב־{new Date(weather.weatherData.dt * 1000).toLocaleTimeString()}</div>
         </div>
       </div>
     )
-  );
+      : weather.loading ? (
+        <div className="loading-container">
+          <div className="loading">טוען...</div>
+        </div>
+      ) : (
+        <div className="error-container">
+          <div className="error">שגיאה בטעינת מזג האוויר</div>
+        </div>
+      ))
+
 };
 
 export default WeatherComp;
