@@ -1,4 +1,3 @@
-import * as React from 'react';
 import './Navbar.css';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -6,13 +5,10 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { NavLink, useNavigate } from 'react-router';
 import { Button } from '@mui/material';
@@ -21,6 +17,7 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { ILink, getLinks } from '../../Utils/allLinksFunc';
 import { logUotReducer } from '../../redux/ExtraRedusers/LoginExtraReduser';
 import { clearPosts } from '../../redux/Slice/PostSlice';
+import { useEffect, useState } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -66,18 +63,18 @@ export default function PrimarySearchAppBar() {
     const isAdmin = useSelector((state: RootState) => state.myUser.isAdmin);
     const dispatch = useDispatch();
     const appDispatch = useAppDispatch();
-    const [isLogin, setIsLogin] = React.useState(false);
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [isLogin, setIsLogin] = useState(false);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-        React.useState<null | HTMLElement>(null);
-    const [allLinks, setAllLinks] = React.useState<ILink[]|[]>([]);  
+        useState<null | HTMLElement>(null);
+    const [allLinks, setAllLinks] = useState<ILink[]|[]>([]);  
 
     const handleLoguot = () => {
         appDispatch(logUotReducer())
         dispatch(clearPosts())
         navigate('/login');
     }
-    React.useEffect(() => {
+    useEffect(() => {
         if (localStorage.getItem('user')) {
             setIsLogin(true);
         }
@@ -86,7 +83,7 @@ export default function PrimarySearchAppBar() {
         }
     }, [idUser]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const newLinks = getLinks(isAdmin);
         setAllLinks(newLinks);
     }, []);
