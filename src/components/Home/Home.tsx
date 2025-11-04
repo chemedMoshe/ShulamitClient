@@ -1,21 +1,14 @@
-//import { useEffect } from 'react';
+import { useSelector } from 'react-redux'
 import './Home.css'
-//import { useNavigate } from 'react-router';
+import { RootState } from '../../redux/store'
 
 
 export default function Home() {
-    // const navigate = useNavigate();
-    // useEffect(() => {
-    //     if (!localStorage.getItem('user')) {
-    //         navigate('/login');
-    //         return
-    //     }
-    // },[]);
-   
     const name:string = JSON.parse(localStorage.getItem('user')!)?.name
+    const nameFromREdux:string|null = useSelector((state:RootState)=> state.myUser.name)
   return (
     <div className="Home">
-     <h2>!שלום  {name}</h2>
+     <h2>!שלום  {nameFromREdux||name}</h2>
      <div>
       ברוכים הבאים לאתר חיבור והתקשרות הנשמות 
       <br/>

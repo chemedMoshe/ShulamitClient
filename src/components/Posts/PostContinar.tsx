@@ -4,13 +4,19 @@ import { useEffect } from 'react';
 import { getAllPostsReduser } from '../../redux/ExtraRedusers/Post/GetAllExtraReduser';
 import './Post.css';
 import PostItem from './PostItem';
+import { useNavigate } from 'react-router';
 
 
 export default function PostsDashboard() {
   const appDispatch = useAppDispatch();
   const posts = useSelector((state: RootState) => state.post.postList);
+  const navigate = useNavigate();
 
   useEffect(() => {
+        if (!localStorage.getItem('user')) {
+            navigate('/login');
+            return
+        }
     appDispatch(getAllPostsReduser());
   }, []);
 

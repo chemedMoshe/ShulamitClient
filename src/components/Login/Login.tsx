@@ -58,10 +58,7 @@ export default function SignInCard() {
         }
         appDispatch(loginReduser({ email: (document.getElementById('email') as HTMLInputElement).value, password: (document.getElementById('password') as HTMLInputElement).value }));
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+       
     };
 
     const validateInputs = () => {

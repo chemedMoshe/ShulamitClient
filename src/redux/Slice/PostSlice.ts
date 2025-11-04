@@ -16,6 +16,9 @@ const postSlice = createSlice({
     reducers: {
         clearError: (state) => {
             state.error = null;
+        },
+        clearPosts: (state) => {
+            state.postList = null;
         }
     },
     extraReducers: (builder) => {
@@ -39,5 +42,5 @@ const postSlice = createSlice({
     },
 });
 
-export const { clearError } = postSlice.actions
+export const { clearError, clearPosts } = postSlice.actions
 export default postSlice.reducer

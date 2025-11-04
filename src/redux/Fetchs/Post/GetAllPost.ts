@@ -1,6 +1,8 @@
 export const getAllPosts = async () => {
     try {
-        const allPosts = await fetch('http://localhost:2021/post/all');
+        const allPosts = await fetch('http://localhost:2021/post/all',{
+            credentials: "include",
+        });
         if (allPosts.status > 200){
             throw new Error('Network response was not ok');
         }

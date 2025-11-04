@@ -16,9 +16,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { NavLink, useNavigate } from 'react-router';
 import { Button } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { ILink, returnLinks } from '../../Utils/allLinksFunc';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { ILink, getLinks } from '../../Utils/allLinksFunc';
+import { logUotReducer } from '../../redux/ExtraRedusers/LoginExtraReduser';
+import { clearPosts } from '../../redux/Slice/PostSlice';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -61,20 +63,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar() {
     const idUser = useSelector((state: RootState) => state.myUser._id);
+    const isAdmin = useSelector((state: RootState) => state.myUser.isAdmin);
+    const dispatch = useDispatch();
+    const appDispatch = useAppDispatch();
     const [isLogin, setIsLogin] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         React.useState<null | HTMLElement>(null);
     const [allLinks, setAllLinks] = React.useState<ILink[]|[]>([]);  
 
+    const handleLoguot = () => {
+        appDispatch(logUotReducer())
+        dispatch(clearPosts())
+        navigate('/login');
+    }
     React.useEffect(() => {
         if (localStorage.getItem('user')) {
             setIsLogin(true);
         }
+        else {
+            setIsLogin(false);
+        }
     }, [idUser]);
 
     React.useEffect(() => {
-        const newLinks = returnLinks();
+        const newLinks = getLinks(isAdmin);
         setAllLinks(newLinks);
     }, []);
 
@@ -141,17 +154,12 @@ export default function PrimarySearchAppBar() {
         >
             <MenuItem onClick={handleMenuClose}>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <MailIcon />
-                    </Badge>
+                    
                 </IconButton>
                 <p onClick={() => navigate('/post')}>מאמרים</p>
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <MailIcon />
-                    </Badge>
                 </IconButton>
                 <p onClick={() => navigate('/weather')}>מזג אוויר זוגי</p>
             </MenuItem>
@@ -161,9 +169,6 @@ export default function PrimarySearchAppBar() {
                     aria-label="show 17 new notifications"
                     color="inherit"
                 >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
-                    </Badge>
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
@@ -186,14 +191,15 @@ export default function PrimarySearchAppBar() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundColor: '#f78799' }}>
                 <Toolbar>
-                    {!isLogin && <Button
+                    {!isLogin ? <Button
                         className='LoginButton'
                         color="inherit"
                         aria-label="open drawer"
                         onClick={() => navigate('/login')}
                         sx={{ marginRight: '2%' }}                    >
                         כניסה
-                    </Button>
+                    </Button> :
+                    <Button onClick={handleLoguot}>LOGOUT</Button>
                     }
 
                     <Search>
@@ -211,9 +217,7 @@ export default function PrimarySearchAppBar() {
                     
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         {allLinks.map((link:ILink) =>
-                            <Badge badgeContent={4} color="error" key={link.name}>
                             <NavLink to={link.link} className='link'>{link.name}</NavLink>
-                            </Badge>
                             
                         )}
                     </Box>

@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IinitialUserState } from ".././Types/initialState";
 import { registerReduser } from ".././ExtraRedusers/RegisterExtraReduser";
-import { loginReduser } from ".././ExtraRedusers/LoginExtraReduser";
+import { loginReduser, logUotReducer } from ".././ExtraRedusers/LoginExtraReduser";
 
 const initialState: IinitialUserState = {
     _id: null,
     name: null,
     email: null,
+    isAdmin: false,
     loading: false,
     error: null,
     success: false
@@ -21,6 +22,7 @@ const userSlice = createSlice({
             state._id = null;
             state.name = null;
             state.email = null;
+            state.isAdmin = false
         },
         clearError: (state) => {
             state.error = null;
@@ -82,8 +84,29 @@ const userSlice = createSlice({
             state._id = null;
             state.name = null;
             state.email = null;
-        })    
+        }) 
+        builder.addCase(logUotReducer.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+            state.success = false;
+        });
+        builder.addCase(logUotReducer.fulfilled,
+            (state, _) => {
+                state._id = null;
+                state.name = null;
+                state.email = null;
+                state.isAdmin = false
+                state.loading = false;
+                state.error = null;
+                state.success = true;
+            });
+        builder.addCase(logUotReducer.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload as string;
+            state.success = false;
+        });
         }
+        
     }
 );
 

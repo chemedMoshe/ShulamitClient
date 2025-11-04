@@ -1,15 +1,17 @@
 export interface ILink {
     name: string,
     link: string;
+    isAdmin?:boolean
 }
 
-export const listLinks: ILink[] = [
+const listLinks: ILink[] = [
     { name: 'בית', link: '/' },
     {name:'מאמרים',link:'/post'},
     {name:'מזג אוויר זוגי',link:'/weather'},
+    {name:"ניהול", link:"/manager", isAdmin:true}
 
 ];
 
-export const returnLinks = () => {
-    return listLinks
-};
+export const getLinks = (isAdmin:boolean) => 
+     isAdmin ? listLinks: listLinks.filter(link => !link.isAdmin)
+

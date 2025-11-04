@@ -1,10 +1,14 @@
 import { NavLink } from "react-router";
-import { listLinks } from "../../Utils/allLinksFunc";
+import { getLinks } from "../../Utils/allLinksFunc";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+
 
 export default function Navbarr() {
+  const isAdmin = useSelector((state:RootState) => state.myUser.isAdmin)
   return (
     <div>
-      {listLinks.map((link) => (
+      {getLinks(isAdmin).map((link) => (
           <NavLink to={link.link}>{link.name}</NavLink>
       ))}
     </div>
