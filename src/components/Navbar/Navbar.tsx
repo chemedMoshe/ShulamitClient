@@ -86,7 +86,7 @@ export default function PrimarySearchAppBar() {
     useEffect(() => {
         const newLinks = getLinks(isAdmin);
         setAllLinks(newLinks);
-    }, []);
+    }, [isAdmin]);
 
     const navigate = useNavigate();
     const isMenuOpen = Boolean(anchorEl);
@@ -128,7 +128,7 @@ export default function PrimarySearchAppBar() {
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+            <MenuItem onClick={handleMenuClose}>{isLogin?"Logout":""}</MenuItem>
         </Menu>
     );
 
@@ -214,7 +214,7 @@ export default function PrimarySearchAppBar() {
                     
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         {allLinks.map((link:ILink) =>
-                            <NavLink to={link.link} className='link'>{link.name}</NavLink>
+                            <NavLink to={link.link} className='link' key={link.link}>{link.name}</NavLink>
                             
                         )}
                     </Box>

@@ -6,3 +6,5 @@ export type PostType = {
     endPost: string | null,
     likes: { id: string, name: string, email: string, amount: number; }[] | [],
 };
+
+export type PostKeysType =  keyof PostType
