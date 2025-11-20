@@ -31,7 +31,7 @@ const PostItem = ({ post }: Prop) => {
       {isAdmin && (
          <PostIcons post={post} 
          isUpdateMode={isUpdateMode} 
-         handleSaveChanges={()=>handleSaveChanges(post)}
+         handleSaveChanges={()=>handleSaveChanges(currentPost)}
          handleUpdateMode={setIsUpdateMode}
          />
       )}
