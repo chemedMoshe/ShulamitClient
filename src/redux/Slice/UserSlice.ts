@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { IinitialUserState } from ".././Types/initialState";
 import { registerReduser } from ".././ExtraRedusers/RegisterExtraReduser";
 import { checkIfLoggedUserReducer, loginReduser, logUotReducer } from ".././ExtraRedusers/LoginExtraReduser";

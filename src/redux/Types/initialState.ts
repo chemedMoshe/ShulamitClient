@@ -11,7 +11,7 @@ export interface IinitialUserState {
 }
 
 export interface IinitialPostState {
-    postList: null | PostType[]
+    postList:PostType[]
     loading: boolean
     error: null | string
     success: boolean

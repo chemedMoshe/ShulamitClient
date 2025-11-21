@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux";
 import { PostKeysType, PostType } from "../../redux/Types/PostType";
 import { RootState, useAppDispatch } from "../../redux/store";
-import DeletePost from "./DeletePost";
-import UpdatePost from "./UpdatePost";
 import { useState } from "react";
 import { updatePostReducer } from "../../redux/ExtraRedusers/Post/UpdatePsoExtraReducer";
-import "./Post.css";
 import PostIcons from "./PostIcons";
+import "./Post.css";
 
 interface Prop {
   post: PostType;

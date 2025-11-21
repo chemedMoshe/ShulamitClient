@@ -4,9 +4,10 @@ import { getAllPostsReduser } from "../ExtraRedusers/Post/GetAllExtraReduser";
 import { PostType } from "../Types/PostType";
 import { deletePostReducer } from "../ExtraRedusers/Post/deleteReducer";
 import { updatePostReducer } from "../ExtraRedusers/Post/UpdatePsoExtraReducer";
+import { addPostReducer } from "../ExtraRedusers/Post/addNewPostReducer";
 
 const initialState: IinitialPostState = {
-  postList: null,
+  postList: [],
   loading: false,
   error: null,
   success: false,
@@ -20,15 +21,35 @@ const postSlice = createSlice({
       state.error = null;
     },
     clearPosts: (state) => {
-      state.postList = null;
+      state.postList = [];
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(addPostReducer.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+      state.success = false;
+      state.postList = [];
+    });
+    builder.addCase(
+      addPostReducer.fulfilled,
+      (state, action: PayloadAction<PostType>) => {
+        state.loading = true;
+        state.error = null;
+        state.success = true;
+        state.postList = [action.payload, ...state.postList];
+      }
+    );
+    builder.addCase(addPostReducer.rejected, (state) => {
+      state.loading = true;
+      state.error = null;
+      state.success = false;
+    });
     builder.addCase(getAllPostsReduser.pending, (state) => {
       state.loading = true;
       state.error = null;
       state.success = false;
-      state.postList = null;
+      state.postList = [];
     });
     builder.addCase(
       getAllPostsReduser.fulfilled,
@@ -42,7 +63,7 @@ const postSlice = createSlice({
       state.loading = false;
       state.error = action.payload as string;
       state.success = false;
-      state.postList = null;
+      state.postList = [];
     });
 
     builder.addCase(deletePostReducer.pending, (state) => {
