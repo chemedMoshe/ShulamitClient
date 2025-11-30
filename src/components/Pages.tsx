@@ -4,6 +4,7 @@ import RegisterCard from "./Register/register";
 import Home from "./Home/Home";
 import PostContainer from "./Posts/PostContinar";
 import WeatherComp from "./Weather/WeatherComp";
+import AdminPost from "./Admin/adminPost";
 
 export default function Pages() {
   return (
@@ -14,6 +15,7 @@ export default function Pages() {
       <Route path="/register" element={<RegisterCard />} />
       <Route path="/post" element={<PostContainer />} />
       <Route path="/weather" element={<WeatherComp />} />
+      <Route path="/manager" element={<AdminPost/>} />
     </Routes>
   );
 }

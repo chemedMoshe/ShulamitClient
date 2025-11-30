@@ -6,8 +6,8 @@ export const addPostReducer = createAsyncThunk(
   "post/newPost",
   async (post: PostType, thunkAPI) => {
     try {
-      const response:PostType = await addNewPost(post);
-      return thunkAPI.fulfillWithValue(response);
+    const data = await addNewPost(post);
+      return thunkAPI.fulfillWithValue(data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);
     }

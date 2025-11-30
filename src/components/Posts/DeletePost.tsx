@@ -9,6 +9,7 @@ const DeletePost = ({ id }: IProp) => {
   const appDispatch = useAppDispatch();
   const handleDelete = () => {
     appDispatch(deletePostReducer(id));
+    console.log(id)
   };
   return (
     <div>

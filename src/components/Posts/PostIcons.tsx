@@ -1,8 +1,7 @@
 import DeletePost from "./DeletePost";
 import UpdatePost from "./UpdatePost";
+import {PostType } from "../../redux/Types/PostType";
 import "./Post.css";
-import { useState } from "react";
-import { PostKeysType, PostType } from "../../redux/Types/PostType";
 
 interface IProps {
   post: PostType;

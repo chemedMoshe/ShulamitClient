@@ -4,6 +4,9 @@ export const addNewPost = async (newPost: PostType) => {
     try {
         const res = await fetch('http://localhost:2021/post',{
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(newPost),
             credentials: "include",
         });
@@ -13,6 +16,6 @@ export const addNewPost = async (newPost: PostType) => {
         const data: PostType = await res.json();
         return data;
     } catch (error) {
-        throw "קבלת כל הפוסטים כשלה";
+        throw "הוספת הפוסט נכשלה, נסה שוב מאוחר יותר";
     }
 };

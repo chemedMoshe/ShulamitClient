@@ -17,7 +17,7 @@ export default function PostsDashboard() {
             navigate('/login');
             return
         }
-    appDispatch(getAllPostsReduser());
+   posts.length === 0 && appDispatch(getAllPostsReduser());
   }, []);
 
   return (

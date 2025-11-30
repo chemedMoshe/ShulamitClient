@@ -1,0 +1,59 @@
+.admin-container {
+    width: 80%;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-post-container {
+    padding: 4rem;
+    background-color: #fff;
+    box-shadow: 1px 2px 10px black;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 20rem;
+}
+.new-post-container h2 {
+    text-align: right;
+}
+.new-post-container input,
+.new-post-container textarea {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 2px 10px gray;
+    resize: none;
+    direction: rtl;
+    outline: none;
+    background-color: aliceblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+.new-post-container textarea {
+    min-height: 10rem;
+    font-weight: normal;
+    field-sizing: content;
+}
+
+.new-post-container button {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    align-self: flex-start;
+    box-shadow: 1px 2px 10px gray;
+    transition: background-color 0.3s ease;
+}
+.new-post-container button:hover {
+    background-color: #45a049;
+}
+.new-post-container button:active {
+    background-color: #3e8e41;
+}

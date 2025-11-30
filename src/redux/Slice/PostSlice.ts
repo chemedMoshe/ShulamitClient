@@ -29,7 +29,6 @@ const postSlice = createSlice({
       state.loading = true;
       state.error = null;
       state.success = false;
-      state.postList = [];
     });
     builder.addCase(
       addPostReducer.fulfilled,
@@ -37,7 +36,7 @@ const postSlice = createSlice({
         state.loading = true;
         state.error = null;
         state.success = true;
-        state.postList = [action.payload, ...state.postList];
+        state.postList = [action.payload,...state.postList];
       }
     );
     builder.addCase(addPostReducer.rejected, (state) => {
