@@ -20,7 +20,6 @@ const PostIcons = ({
     <div className="post-icons">
       <DeletePost id={post._id} />
       <UpdatePost
-        id={""}
         handleUpdateMode={() => handleUpdateMode(!isUpdateMode)}
         isUpdateMode={isUpdateMode}
         handleSaveChanges={handleSaveChanges}
