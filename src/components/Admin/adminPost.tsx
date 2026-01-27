@@ -10,7 +10,10 @@ const AdminPost = () => {
         const {name,value} = e.target
         setNewPost(prev => ({...prev,[name]:value}as PostType))
     }
-    const onSubmitNewPost = (post: PostType) => appDispatch(addPostReducer(post));
+const isValidPost = (): boolean => 
+    !!(newPost?.subject && newPost?.header && newPost?.content);
+
+    const onSubmitNewPost = (post: PostType) =>  isValidPost() && appDispatch(addPostReducer(post));
   return (
     <div className="admin-container">
         <div className="new-post-container">
@@ -18,7 +21,7 @@ const AdminPost = () => {
       <input name="subject"onChange={handlePostChange} value={newPost?.subject} placeholder="נושא"/>      
       <input name="header"onChange={handlePostChange} value={newPost?.header} placeholder="כותרת"/>
       <textarea name="content" onChange={handlePostChange} value={newPost?.content} placeholder="תוכן"/>
-      <button onClick={() => onSubmitNewPost(newPost as PostType)}>הוסף</button>
+      <button className="create-post-button" onClick={() => onSubmitNewPost(newPost as PostType)} disabled={!isValidPost()}>הוסף</button>
         </div>
     </div>
   )

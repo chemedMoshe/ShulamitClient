@@ -1,6 +1,6 @@
 export const registerFunc = async (email: string, password: string, name: string) => {
     try {
-        const response = await fetch('http://localhost:2021/auth/register', {
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

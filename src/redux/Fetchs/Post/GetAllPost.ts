@@ -1,6 +1,6 @@
 export const getAllPosts = async () => {
     try {
-        const allPosts = await fetch('http://localhost:2021/post/all',{
+        const allPosts = await fetch(`${import.meta.env.VITE_BASE_URL}/post/all`,{
             credentials: "include",
         });
         if (allPosts.status > 200){

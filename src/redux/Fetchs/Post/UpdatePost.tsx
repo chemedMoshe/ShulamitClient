@@ -1,7 +1,7 @@
 import { PostType } from "../../Types/PostType";
 
 export const updatePostFetch = async (postId: string, updatedData: PostType) => {
-  const response = await fetch(`http://localhost:2021/post/update/${postId}`, {
+  const response = await fetch(`${import.meta.env.VITE_BASE_URL}/post/update/${postId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

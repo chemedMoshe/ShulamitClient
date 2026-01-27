@@ -1,6 +1,6 @@
 export const checkIfLoggedUserFunc = async () => {
     try {
-        const response = await fetch('http://localhost:2021/auth/is-logged-user', {
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/is-logged-user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

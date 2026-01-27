@@ -2,7 +2,7 @@ import { PostType } from "../../Types/PostType";
 
 export const addNewPost = async (newPost: PostType) => {
     try {
-        const res = await fetch('http://localhost:2021/post',{
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/post`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

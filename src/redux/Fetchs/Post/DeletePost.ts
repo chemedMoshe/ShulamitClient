@@ -1,7 +1,7 @@
 export const deletePostFetch = async (postId: string) => {
   try {
   const response = await fetch(
-    `http://localhost:2021/post/delete/${postId}`,
+    `${import.meta.env.VITE_BASE_URL}/post/delete/${postId}`,
     {
       method: "DELETE",
       headers: {
