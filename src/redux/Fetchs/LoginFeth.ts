@@ -23,7 +23,7 @@ export const loginFunc = async (email: string, password: string) => {
 
 export const logoutFunc = async () => {
     try {
-        const response = await fetch('http://localhost:2021/auth/logout', {
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/logout`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
