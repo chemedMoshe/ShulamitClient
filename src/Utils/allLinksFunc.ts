@@ -8,6 +8,7 @@ const listLinks: ILink[] = [
     { name: 'בית', link: '/' },
     {name:'מאמרים',link:'/post'},
     {name:'מזג אוויר זוגי',link:'/weather'},
+    {name:'גרף זוגי',link:'/graph'},
     {name:"ניהול", link:"/manager", protected:true}
 
 ];

@@ -125,6 +125,7 @@ export default function PrimarySearchAppBar() {
                 </IconButton>
                 <p onClick={() => navigate('/manager')}>ניהול</p>
             </MenuItem>}
+
         </Menu>
     );
 
