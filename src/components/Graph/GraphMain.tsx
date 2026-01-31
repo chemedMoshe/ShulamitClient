@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { createDataGraph } from '../../redux/ExtraRedusers/Graph/createDataGraphExtraReducer';
 import { DataGraph} from '../../redux/Types/DataGraph';
 import Graphs from './DisplayGraph';
+import './style.css'
+import { Button } from '@mui/material';
 
 const GraphMain = () => {
   const [dataGraph, setDataGraph] = React.useState<DataGraph>();
@@ -24,17 +26,18 @@ const GraphMain = () => {
         appDispatch(getDataGraph())
     }, [])
   return (
-    <>
-    <div>
-      <h1>Graph Main</h1>
-      <input type="number" name="emotionScore" placeholder='Title' onChange={handleDataGraph} />
-      <input type="number" name="desireToStay_score" placeholder='Description' onChange={handleDataGraph} />
-      <input type="number" name="tensionLevel" placeholder='tensionLevel' onChange={handleDataGraph} />
-      <input type="number" name="entryOrder" placeholder='entryOrder' onChange={handleDataGraph} />
-      <button onClick={handleCreateData}>Create</button>
+    <div className='graph-container'>
+    <div className='create-data-graph'>
+      <h1>הסיפור האישי שלי</h1>
+      <h3>כאן המקום למדוד את הערכים הבאים ולתת להם ציון ללא מגבלות וללא כללים, בכדי לאפשר לך ולעקוב אחרי ההתקדמות הטיפול לזכור את נקודת ההתחלה, לראות את המסלול ואת הדרך, ולקבל כח להמשך, מכאן האיחול שלי הוא רק להמשיך ולהצליח ❤️ </h3>
+      <input type="number" name="emotionScore" placeholder=' ציון רגש'  onChange={handleDataGraph} />
+      <input type="number" name="desireToStay_score" placeholder='רצון להישאר יחד' onChange={handleDataGraph} />
+      <input type="number" name="tensionLevel" placeholder='רמת מתח' onChange={handleDataGraph} />
+      <input type="number" name="entryOrder" placeholder='תקווה לעתיד' onChange={handleDataGraph} />
+      <Button onClick={handleCreateData}>Create</Button>
     </div>
     <Graphs data={dataGraphList}/>
-    </>
+    </div>
   )
 }
 

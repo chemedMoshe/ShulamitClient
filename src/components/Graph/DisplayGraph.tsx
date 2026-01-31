@@ -32,6 +32,12 @@ const COLORS = {
 };
 
 const Graphs = ({ data }: GraphsProps) => {
+    const titles = [
+  "ציון רגש",
+  "רצון להישאר יחד",
+  "רמת מתח",
+  "תקווה לעתיד"
+]
   const sortedData = useMemo(() => {
     return [...data].sort(
       (a, b) =>
@@ -159,20 +165,22 @@ const Graphs = ({ data }: GraphsProps) => {
 
       {/* גרפים משניים */}
       <Box display="flex" flexWrap="wrap" gap={4}>
-        {(
+        { 
+        (
           ["emotionScore", "desireToStay_score", "tensionLevel", "entryOrder"] as const
-        ).map((key) => (
+        ).map((key, i) => (
           <Paper
             key={key}
             sx={{
-              flex: "1 1 420px",
+              flex: "1 1 50%",
               p: 3,
               borderRadius: 3,
-              backgroundColor: "#fafafa",
+              backgroundColor: "rgba(240, 248, 255, 0.904);",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
             }}
           >
             <Typography variant="h6" gutterBottom>
-              {key}
+              {titles[i]}
             </Typography>
 
             <ResponsiveContainer width="100%" height={320}>

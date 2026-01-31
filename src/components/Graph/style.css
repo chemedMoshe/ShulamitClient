@@ -1,0 +1,40 @@
+.graph-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.create-data-graph {
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    width: 100%;
+    color:  whitesmoke;
+}
+
+.create-data-graph h3{
+    backdrop-filter: blur(5px);
+    
+}
+
+.create-data-graph input, .create-data-graph button {
+    max-width: 200px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.76);
+}
+
+.create-data-graph button {
+    background-color: #3176f5;
+    color: white;
+}
+
