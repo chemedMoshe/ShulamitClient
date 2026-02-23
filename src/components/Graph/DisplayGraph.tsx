@@ -32,12 +32,20 @@ const COLORS = {
 };
 
 const Graphs = ({ data }: GraphsProps) => {
-    const titles = [
+    const graphTitles = [
   "ציון רגש",
   "רצון להישאר יחד",
   "הרמוניה זוגית",
   "תקווה לעתיד"
 ]
+
+const TOOLTIP_LABELS: Record<string, string> = {
+  emotionScore: "ציון רגש",
+  desireToStay_score: "רצון להישאר יחד",
+  tensionLevel: "הרמוניה זוגית",
+  entryOrder: "תקווה לעתיד",
+  total: "סכום כולל",
+};
   
   const chartData = useMemo(() => {
     if (data) {
@@ -85,7 +93,7 @@ const Graphs = ({ data }: GraphsProps) => {
   }, [data]);
 
   /* Tooltip */
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload}: any) => {
     if (!active || !payload?.length) return null;
 
     const point = payload[0].payload;
@@ -109,7 +117,7 @@ const Graphs = ({ data }: GraphsProps) => {
             variant="body2"
             sx={{ color: item.stroke }}
           >
-            {item.dataKey}: {item.value}
+            {TOOLTIP_LABELS[item.dataKey] ?? item.dataKey}: {item.value}
           </Typography>
         ))}
       </Paper>
@@ -177,7 +185,7 @@ const Graphs = ({ data }: GraphsProps) => {
             }}
           >
             <Typography variant="h6" gutterBottom>
-              {titles[i]}
+              {graphTitles[i]}
             </Typography>
 
             <ResponsiveContainer width="100%" height={320}>
