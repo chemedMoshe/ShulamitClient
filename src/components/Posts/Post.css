@@ -46,6 +46,10 @@
     align-self: flex-end;
 }
 
+.post-icons svg {
+  cursor: pointer;
+}
+
 .update-post-header {
   padding: 0.8rem;
   width: 100%;

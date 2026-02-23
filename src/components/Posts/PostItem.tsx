@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { PostKeysType, PostType } from "../../redux/Types/PostType";
 import { RootState, useAppDispatch } from "../../redux/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { updatePostReducer } from "../../redux/ExtraRedusers/Post/UpdatePsoExtraReducer";
 import PostIcons from "./PostIcons";
 import "./Post.css";
@@ -14,6 +14,11 @@ const PostItem = ({ post }: Prop) => {
   const isAdmin = useSelector((state: RootState) => state.myUser.isAdmin);
   const [isUpdateMode, setIsUpdateMode] = useState(false);
   const [currentPost, setCurrentPost] = useState<PostType>(post);
+  
+  useEffect(() => {
+    setCurrentPost(post);
+  }, [post]);
+  
   const handleUpdatePost = (key: PostKeysType, value: string) => {
     setCurrentPost((prev) => {
       return { ...prev, [key]: value };

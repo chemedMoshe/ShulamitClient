@@ -33,7 +33,7 @@ const postSlice = createSlice({
     builder.addCase(
       addPostReducer.fulfilled,
       (state, action: PayloadAction<PostType>) => {
-        state.loading = true;
+        state.loading = false;
         state.error = null;
         state.success = true;
         state.postList = [action.payload,...state.postList];

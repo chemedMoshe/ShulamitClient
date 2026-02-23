@@ -120,6 +120,11 @@ export default function PrimarySearchAppBar() {
                 </IconButton>
                 <p onClick={() => navigate('/weather')}>מזג אוויר זוגי</p>
             </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                </IconButton>
+                <p onClick={() => navigate('/graph')}>גרף זוגי</p>
+            </MenuItem>
             {isAdmin && <MenuItem onClick={handleMenuClose}>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                 </IconButton>

@@ -4,6 +4,7 @@ import { weatherReducer } from "../../redux/ExtraRedusers/WeatherExtraReduser";
 import { useSelector } from "react-redux";
 import "./Weather.css";
 import { useNavigate } from "react-router";
+import { LinearProgress } from "@mui/material";
 
 export interface IWeather {
   lat: number;
@@ -88,9 +89,9 @@ const WeatherComp = () => {
     </div>
   ) : weather.loading ? (
     <div className="loading-container">
-      <div className="loading">טוען...</div>
+      <div className="loading"><LinearProgress color="secondary"/></div>
     </div>
-  ) : (
+  ) : weather.error && (
     <div className="error-container">
       <div className="error">שגיאה בטעינת מזג האוויר</div>
     </div>

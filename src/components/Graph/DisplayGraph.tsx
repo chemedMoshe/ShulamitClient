@@ -35,41 +35,38 @@ const Graphs = ({ data }: GraphsProps) => {
     const titles = [
   "ציון רגש",
   "רצון להישאר יחד",
-  "רמת מתח",
+  "הרמוניה זוגית",
   "תקווה לעתיד"
 ]
-  const sortedData = useMemo(() => {
-    return [...data].sort(
-      (a, b) =>
-        new Date(a.entryTime).getTime() - new Date(b.entryTime).getTime()
-    );
-  }, [data]);
-
+  
   const chartData = useMemo(() => {
-    return sortedData.map((item) => {
-      const dateObj = new Date(item.entryTime);
+    if (data) {
 
-      return {
-        x: dateObj.getTime(), // X ייחודי
-        date: dateObj.toLocaleDateString(),
-        time: dateObj.toLocaleTimeString(),
-        emotionScore: item.emotionScore,
-        desireToStay_score: item.desireToStay_score,
-        tensionLevel: item.tensionLevel,
-        entryOrder: item.entryOrder,
-        total:
+      return data.map((item) => {
+        const dateObj = new Date(item.entryTime);
+        
+        return {
+          x: dateObj.getTime(), 
+          date: dateObj.toLocaleDateString(),
+          time: dateObj.toLocaleTimeString(),
+          emotionScore: item.emotionScore,
+          desireToStay_score: item.desireToStay_score,
+          tensionLevel: item.tensionLevel,
+          entryOrder: item.entryOrder,
+          total:
           item.emotionScore +
           item.desireToStay_score +
           item.tensionLevel +
           item.entryOrder,
-      };
-    });
-  }, [sortedData]);
+        };
+      });
+    }
+  }, [data]);
 
   const dayTicks = useMemo(() => {
     const map = new Map<string, number>();
 
-    sortedData.forEach((item) => {
+    data.forEach((item) => {
       const d = new Date(item.entryTime);
       const dayKey = d.toISOString().split("T")[0]; // YYYY-MM-DD
 
@@ -85,7 +82,7 @@ const Graphs = ({ data }: GraphsProps) => {
     });
 
     return Array.from(map.values());
-  }, [sortedData]);
+  }, [data]);
 
   /* Tooltip */
   const CustomTooltip = ({ active, payload }: any) => {
